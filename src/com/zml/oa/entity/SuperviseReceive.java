@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  */
 @Entity
-@Table(name = "SUPERVISE_RECEIVE")
+@Table(name = "T_SUPERVISE_RECEIVE")
 public class SuperviseReceive implements Serializable{
 
 	/**

@@ -7,15 +7,18 @@
  */
 package com.zml.oa.action;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.zml.oa.entity.Datagrid;
+import com.zml.oa.entity.Group;
+import com.zml.oa.entity.Message;
+import com.zml.oa.entity.User;
+import com.zml.oa.pagination.Page;
+import com.zml.oa.service.IGroupService;
+import com.zml.oa.service.IUserService;
+import com.zml.oa.shiro.realm.UserRealm;
+import com.zml.oa.util.BeanUtils;
+import com.zml.oa.util.Constants;
+import com.zml.oa.util.DateUtil;
+import com.zml.oa.util.UserUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -38,18 +41,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.zml.oa.entity.Datagrid;
-import com.zml.oa.entity.Group;
-import com.zml.oa.entity.Message;
-import com.zml.oa.entity.User;
-import com.zml.oa.pagination.Page;
-import com.zml.oa.service.IGroupService;
-import com.zml.oa.service.IUserService;
-import com.zml.oa.shiro.realm.UserRealm;
-import com.zml.oa.util.BeanUtils;
-import com.zml.oa.util.Constants;
-import com.zml.oa.util.DateUtil;
-import com.zml.oa.util.UserUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: UserAction
@@ -248,6 +246,9 @@ public class UserAction {
         for(Session session : sessions){
         	Map<String, Object> map=new HashMap<String, Object>();
         	PrincipalCollection principalCollection = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+			if (principalCollection == null) {
+				continue;
+			}
         	String userName = (String)principalCollection.getPrimaryPrincipal();
         	Boolean forceLogout = session.getAttribute(Constants.SESSION_FORCE_LOGOUT_KEY) != null;
         	map.put("id", session.getId());

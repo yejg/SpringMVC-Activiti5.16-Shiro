@@ -43,20 +43,20 @@ public class jdbcTest {
 			System.out.println(map.get("G_NAME"));
 		}
 		
-		String sql2 = "update T_SALARY set BASE_MONEY=:money where USER_ID=:userId ";
-		Map<String, Object> paramMap2 = new HashMap<String, Object>();  
-	    paramMap.put("money", 6666);  
-	    paramMap.put("userId", 12);  
-		this.jdbcDao.saveOrUpdate(sql2, paramMap2);
-	    
-		String sql3 = "insert into T_SALARY (id, base_money, user_id) values (?, ?, ?)";
-		final int count = 2000;    
-	    final List<String> money = new ArrayList<String>(count);    
-	    final List<String> userIds = new ArrayList<String>(count);    
-	    for (int i = 0; i < count; i++) {    
-	    	money.add("First Name " + i);    
-	    	userIds.add("Last Name " + i);    
-	    }  
+		// String sql2 = "update T_SALARY set BASE_MONEY=:money where USER_ID=:userId ";
+		// Map<String, Object> paramMap2 = new HashMap<String, Object>();
+	    // paramMap.put("money", 6666);
+	    // paramMap.put("userId", 12);
+		// this.jdbcDao.saveOrUpdate(sql2, paramMap2);
+	    //
+		// String sql3 = "insert into T_SALARY (id, base_money, user_id) values (?, ?, ?)";
+		// final int count = 2000;
+	    // final List<String> money = new ArrayList<String>(count);
+	    // final List<String> userIds = new ArrayList<String>(count);
+	    // for (int i = 0; i < count; i++) {
+	    // 	money.add("First Name " + i);
+	    // 	userIds.add("Last Name " + i);
+	    // }
 		
 	}
 }
